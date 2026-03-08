@@ -9,8 +9,49 @@
   </head>
   <body>
     <header>
-      <img src="../img/bandida-logo-transparente.png" alt="Logo da Bateria Bandida com fundo transparente">
+      <img
+        src="../img/bandida-logo-transparente.png"
+        alt="Logo da Bateria Bandida com fundo transparente"
+      />
       <h1><strong>Mestre Virtual</strong></h1>
     </header>
+    <main>
+      <section class="metronome"></section>
+      <section class="config">
+        <form>
+          <fieldset>
+            <legend>Velocidade em bpm:</legend>
+            <div class="form-param">
+              <input
+                type="number"
+                name="vel"
+                id="vel"
+                min="30"
+                max="576"
+                value="120"
+              />
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Comandos</legend>
+            <div class="form-param checkbox">
+              <div class="checkbox-container">
+                <input type="checkbox" name="vd2" id="vd2" />
+                <label for="vd2">Virada de 2</label>
+              </div>
+              <div class="checkbox-container">
+                <input type="checkbox" name="vd2n" id="vd2n" />
+                <label for="vd2n">Virada de 2 com nota extra</label>
+              </div>
+              <div class="checkbox-container">
+                <input type="checkbox" name="vd3" id="vd3" />
+                <label for="vd3">Virada de 3</label>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </section>
+    </main>
   </body>
 </html>
