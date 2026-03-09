@@ -16,7 +16,14 @@
       <h1><strong>Mestre Virtual</strong></h1>
     </header>
     <main>
-      <section class="metronome"></section>
+      <section class="metronome">
+        <div class="beats-container">
+          <h2 class="beat active">1</h2>
+          <h2 class="beat">2</h2>
+          <h2 class="beat">3</h2>
+          <h2 class="beat">4</h2>
+        </div>
+      </section>
       <section class="config">
         <form>
           <fieldset>
@@ -29,6 +36,7 @@
                 min="30"
                 max="576"
                 value="120"
+                required
               />
             </div>
           </fieldset>
@@ -40,14 +48,30 @@
                 <input type="checkbox" name="vd2" id="vd2" />
                 <label for="vd2">Virada de 2</label>
               </div>
+              <!-- <div class="checkbox-container">
+                <input type="checkbox" name="vd2" id="vd2" />
+                <label for="vd2">Virada de 2 com leves descendo</label>
+              </div> -->
               <div class="checkbox-container">
                 <input type="checkbox" name="vd2n" id="vd2n" />
                 <label for="vd2n">Virada de 2 com nota extra</label>
               </div>
               <div class="checkbox-container">
+                <input type="checkbox" name="vd2c" id="vd2c" />
+                <label for="vd2c">Virada de 2 cortada</label>
+              </div>
+              <div class="checkbox-container">
                 <input type="checkbox" name="vd3" id="vd3" />
                 <label for="vd3">Virada de 3</label>
               </div>
+              <!-- <div class="checkbox-container">
+                <input type="checkbox" name="subidacurta" id="subidacurta" />
+                <label for="subidacurta">Subida curta - tamborim</label>
+              </div>
+              <div class="checkbox-container">
+                <input type="checkbox" name="subidalonga" id="subidalonga" />
+                <label for="subidalonga">Subida longa - tamborim</label>
+              </div> -->
             </div>
           </fieldset>
         </form>

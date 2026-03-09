@@ -115,7 +115,7 @@ body {
   background-color: var(--bg-secondary-color);
   color: var(--text-color);
   font-family: var(--text-font);
-  font-size: 20px;
+  font-size: 32px;
 }
 
 header {
@@ -130,18 +130,45 @@ header {
 }
 
 header img {
-  width: 50px;
-  height: 50px;
+  width: 128px;
+  height: 128px;
 }
 
 h1 {
   color: var(--title-color);
   font-family: var(--title-font);
-  font-size: 48px;
+  font-size: 64px;
 }
 
 main {
   padding: 30px;
+}
+
+.beats-container {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 100px;
+  justify-content: center;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.beats-container h2.beat {
+  display: block;
+  padding: 8%;
+  border-radius: 15px;
+  border-color: var(--text-color);
+  border-width: 1px;
+  border-style: solid;
+  background-color: var(--bg-secondary-color);
+  font-size: 48px;
+}
+
+.beats-container h2.beat.active {
+  border-color: var(--title-color);
+  border-width: 6px;
+  color: var(--title-color);
+  background-color: var(--bg-primary-color);
 }
 
 form {
@@ -180,12 +207,13 @@ input {
   padding: 10px;
   color: var(--text-color);
   font-family: var(--text-font);
-  font-size: 20px;
+  font-size: 32px;
 }
 
 .form-param.checkbox {
   flex-direction: column;
-  
+  gap: 12px;
+  align-items: flex-start;
 }
 
 input[type="checkbox"] {
