@@ -165,6 +165,7 @@ main {
 }
 
 .beats-container h2.beat.active {
+
   border-color: var(--title-color);
   border-width: 6px;
   color: var(--title-color);
