@@ -17,6 +17,19 @@
       <h1><strong>Mestre Virtual</strong></h1>
     </header>
     <main>
+      <section class="comando-display">
+        <h2 class="comando-titulo">Sinal do Mestre</h2>
+        <div class="sinal-container">
+          <span id="sinal-emoji">✌️</span>
+          <img
+            src="../img/bandida-logo-transparente.png"
+            alt="Sinal do mestre"
+            id="sinal-imagem"
+            style="display: none"
+          />
+        </div>
+        <p id="comando-texto">Virada de 2</p>
+      </section>
       <section class="metronome">
         <div class="beats-container">
           <h2 class="beat active">1</h2>
@@ -29,47 +42,42 @@
         </div>
       </section>
       <section class="config">
-        <div class="form-param">
-          <input
-            type="number"
-            name="vel"
-            id="vel"
-            min="30"
-            max="576"
-            value="120"
-            required
-          />
-        </div>
+        <div class="config-box">
+          <div class="config-group">
+            <span class="config-title">Velocidade em bpm:</span>
+            <div class="form-param">
+              <input
+                type="number"
+                name="vel"
+                id="vel"
+                min="30"
+                max="576"
+                value="120"
+              />
+            </div>
+          </div>
 
-        <div class="form-param checkbox">
-          <div class="checkbox-container">
-            <input type="checkbox" name="vd2" id="vd2" />
-            <label for="vd2">Virada de 2</label>
-          </div>
-          <!-- <div class="checkbox-container">
+          <div class="config-group">
+            <span class="config-title">Comandos</span>
+            <div class="form-param checkbox">
+              <div class="checkbox-container">
                 <input type="checkbox" name="vd2" id="vd2" />
-                <label for="vd2">Virada de 2 com leves descendo</label>
-              </div> -->
-          <div class="checkbox-container">
-            <input type="checkbox" name="vd2n" id="vd2n" />
-            <label for="vd2n">Virada de 2 com nota extra</label>
-          </div>
-          <div class="checkbox-container">
-            <input type="checkbox" name="vd2c" id="vd2c" />
-            <label for="vd2c">Virada de 2 cortada</label>
-          </div>
-          <div class="checkbox-container">
-            <input type="checkbox" name="vd3" id="vd3" />
-            <label for="vd3">Virada de 3</label>
-          </div>
-          <!-- <div class="checkbox-container">
-                <input type="checkbox" name="subidacurta" id="subidacurta" />
-                <label for="subidacurta">Subida curta - tamborim</label>
+                <label for="vd2">Virada de 2</label>
               </div>
               <div class="checkbox-container">
-                <input type="checkbox" name="subidalonga" id="subidalonga" />
-                <label for="subidalonga">Subida longa - tamborim</label>
-              </div> -->
+                <input type="checkbox" name="vd2n" id="vd2n" />
+                <label for="vd2n">Virada de 2 com nota extra</label>
+              </div>
+              <div class="checkbox-container">
+                <input type="checkbox" name="vd2c" id="vd2c" />
+                <label for="vd2c">Virada de 2 cortada</label>
+              </div>
+              <div class="checkbox-container">
+                <input type="checkbox" name="vd3" id="vd3" />
+                <label for="vd3">Virada de 3</label>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
