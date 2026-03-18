@@ -45,7 +45,7 @@ const beats = document.querySelectorAll(".beat");
 const inputchance = document.getElementById("chance");
 
 inputchance.addEventListener("input", (e) => {
-  chanceDeComando = e.target.value / 100;
+  chanceDeComando = e.target.value / 100 || 0.1;
 });
 
 velInput.addEventListener("input", (e) => {
@@ -67,7 +67,6 @@ function playNote(time, beatNumber) {
   let acaoVisualMestre = "nenhuma";
 
   if (beatNumber === 0) {
-    osc.frequency.value = 1000;
     if (estadoMestre === "livre") {
       if (compassosViradaDe3 === 0) {
         if (Math.random() < chanceDeComando) {
@@ -80,8 +79,6 @@ function playNote(time, beatNumber) {
       } else compassosViradaDe3--;
     } else if (estadoMestre === "preparando") {
       estadoMestre = "contagem";
-      acaoVisualMestre = "contar";
-      if (comandoAtual === viradaDe3) compassosViradaDe3 = 3;
     } else if (estadoMestre === "contagem") {
       estadoMestre = "executando";
       acaoVisualMestre = "executar";
@@ -93,10 +90,16 @@ function playNote(time, beatNumber) {
       if (comandoAtual === viradaDe2Cortada) bpm /= 2;
       comandoAtual = null;
     }
-    console.log("Comando atual:", comandoAtual);
-    console.log("Acao Visual do Mestre:", acaoVisualMestre);
+  }
+
+  if (estadoMestre === "contagem") {
+    acaoVisualMestre = "contar";
+
+    osc.type = "square";
+    osc.frequency.value = 2500;
   } else {
-    osc.frequency.value = 800;
+    osc.type = "sine";
+    osc.frequency.value = beatNumber === 0 ? 1000 : 800;
   }
 
   envelope.gain.setValueAtTime(1, time);
@@ -144,6 +147,13 @@ function draw() {
       setTimeout(
         () => containerMestre.classList.remove("comando-destaque"),
         600,
+      );
+    } else if (eventoAtual.acaoMestre === "contar") {
+      displayTexto.innerText = ocultarTexto ? "" : "SE PREPARE!";
+      containerMestre.classList.add("alerta-contagem");
+      setTimeout(
+        () => containerMestre.classList.remove("alerta-contagem"),
+        150,
       );
     } else if (eventoAtual.acaoMestre === "executar") {
       displaySinal.innerText = "💥";

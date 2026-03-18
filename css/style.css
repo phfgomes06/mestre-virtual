@@ -359,3 +359,10 @@ input[type="checkbox"] {
   transform: translateY(6px);
   box-shadow: 0 0px 0px #b38800;
 }
+
+.alerta-contagem {
+  background-color: var(--title-color) !important;
+  border-color: var(--text-color) !important;
+  transform: scale(1.05);
+  transition: all 0.1s ease;
+}
