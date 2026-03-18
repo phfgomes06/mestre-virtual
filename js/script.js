@@ -7,6 +7,7 @@ let estadoMestre = "livre";
 let comandoAtual = null;
 let chanceDeComando = 0.1;
 let ultimoComando = { nome: "null" };
+let compassosViradaDe3 = 0;
 
 let currentBeat = 0;
 let notesInQueue = [];
@@ -20,7 +21,6 @@ const viradaDe2Cortada = { nome: "Virada de 2 cortada", sinal: "✌️✂" };
 const viradaDe3 = { nome: "Virada de 3", sinal: "🤟" };
 const ondinha = { nome: "Ondinha - Retomada", sinal: "🌊" };
 const joinha = { nome: "Retomada", sinal: "👍" };
-
 
 function sortearComando() {
   const ativos = [];
@@ -42,11 +42,11 @@ function sortearComando() {
 const btnPlay = document.getElementById("btn-play");
 const velInput = document.getElementById("vel");
 const beats = document.querySelectorAll(".beat");
-const inputchance = document.getElementById("chance")
+const inputchance = document.getElementById("chance");
 
 inputchance.addEventListener("input", (e) => {
-  chanceDeComando = e.target.value / 100
-})
+  chanceDeComando = e.target.value / 100;
+});
 
 velInput.addEventListener("input", (e) => {
   bpm = parseInt(e.target.value) || 120;
@@ -69,16 +69,19 @@ function playNote(time, beatNumber) {
   if (beatNumber === 0) {
     osc.frequency.value = 1000;
     if (estadoMestre === "livre") {
-      if (Math.random() < chanceDeComando) {
-        comandoAtual = sortearComando();
-        if (comandoAtual) {
-          estadoMestre = "preparando";
-          acaoVisualMestre = "mostrar-sinal";
+      if (compassosViradaDe3 === 0) {
+        if (Math.random() < chanceDeComando) {
+          comandoAtual = sortearComando();
+          if (comandoAtual) {
+            estadoMestre = "preparando";
+            acaoVisualMestre = "mostrar-sinal";
+          }
         }
-      }
+      } else compassosViradaDe3--;
     } else if (estadoMestre === "preparando") {
       estadoMestre = "contagem";
       acaoVisualMestre = "contar";
+      if (comandoAtual === viradaDe3) compassosViradaDe3 = 3;
     } else if (estadoMestre === "contagem") {
       estadoMestre = "executando";
       acaoVisualMestre = "executar";
