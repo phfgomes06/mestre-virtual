@@ -79,6 +79,7 @@ function playNote(time, beatNumber) {
       } else compassosViradaDe3--;
     } else if (estadoMestre === "preparando") {
       estadoMestre = "contagem";
+      if (comandoAtual === viradaDe3) compassosViradaDe3 = 3;
     } else if (estadoMestre === "contagem") {
       estadoMestre = "executando";
       acaoVisualMestre = "executar";
