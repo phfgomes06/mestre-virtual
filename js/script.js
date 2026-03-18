@@ -1,6 +1,7 @@
 let audioContext;
 let isPlaying = false;
 let bpm = 120;
+let bpmDefault = bpm;
 let nextNoteTime = 0.0;
 let timerID;
 let estadoMestre = "livre";
@@ -49,7 +50,8 @@ inputchance.addEventListener("input", (e) => {
 });
 
 velInput.addEventListener("input", (e) => {
-  bpm = parseInt(e.target.value) || 120;
+  bpmDefault = parseInt(e.target.value) || 120;
+  bpm = bpmDefault;
 });
 
 function nextNote() {
@@ -83,7 +85,7 @@ function playNote(time, beatNumber) {
     } else if (estadoMestre === "contagem") {
       estadoMestre = "executando";
       acaoVisualMestre = "executar";
-      if (comandoAtual === joinha) bpm = bpm * 2;
+      if (comandoAtual === joinha) bpm = bpmDefault;
     } else if (estadoMestre === "executando") {
       estadoMestre = "livre";
       ultimoComando = comandoAtual;
