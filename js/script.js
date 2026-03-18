@@ -5,7 +5,7 @@ let nextNoteTime = 0.0;
 let timerID;
 let estadoMestre = "livre";
 let comandoAtual = null;
-let chanceDeComando = 0.6;
+let chanceDeComando = 0.1;
 let ultimoComando = { nome: "null" };
 
 let currentBeat = 0;
@@ -20,6 +20,7 @@ const viradaDe2Cortada = { nome: "Virada de 2 cortada", sinal: "✌️✂" };
 const viradaDe3 = { nome: "Virada de 3", sinal: "🤟" };
 const ondinha = { nome: "Ondinha - Retomada", sinal: "🌊" };
 const joinha = { nome: "Retomada", sinal: "👍" };
+
 
 function sortearComando() {
   const ativos = [];
@@ -41,6 +42,11 @@ function sortearComando() {
 const btnPlay = document.getElementById("btn-play");
 const velInput = document.getElementById("vel");
 const beats = document.querySelectorAll(".beat");
+const inputchance = document.getElementById("chance")
+
+inputchance.addEventListener("input", (e) => {
+  chanceDeComando = e.target.value / 100
+})
 
 velInput.addEventListener("input", (e) => {
   bpm = parseInt(e.target.value) || 120;
@@ -71,18 +77,18 @@ function playNote(time, beatNumber) {
         }
       }
     } else if (estadoMestre === "preparando") {
-        estadoMestre = "contagem";
-        acaoVisualMestre = "contar";
+      estadoMestre = "contagem";
+      acaoVisualMestre = "contar";
     } else if (estadoMestre === "contagem") {
-        estadoMestre = "executando";
-        acaoVisualMestre = "executar";
-        if (comandoAtual === joinha) bpm = bpm * 2;
+      estadoMestre = "executando";
+      acaoVisualMestre = "executar";
+      if (comandoAtual === joinha) bpm = bpm * 2;
     } else if (estadoMestre === "executando") {
-        estadoMestre = "livre";
-        ultimoComando = comandoAtual;
-        acaoVisualMestre = "limpar";
+      estadoMestre = "livre";
+      ultimoComando = comandoAtual;
+      acaoVisualMestre = "limpar";
       if (comandoAtual === viradaDe2Cortada) bpm /= 2;
-        comandoAtual = null;
+      comandoAtual = null;
     }
     console.log("Comando atual:", comandoAtual);
     console.log("Acao Visual do Mestre:", acaoVisualMestre);
