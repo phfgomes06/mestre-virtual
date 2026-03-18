@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="./favicon.png" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <script src="../js/script.js" defer></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.js" defer></script>
     <title>Mestre Virtual</title>
   </head>
   <body>
     <header>
       <img
-        src="../img/bandida-logo-transparente.png"
+        src="img/bandida-logo-transparente.png"
         alt="Logo da Bateria Bandida com fundo transparente"
       />
       <h1><strong>Mestre Virtual</strong></h1>
@@ -20,15 +20,15 @@
       <section class="comando-display">
         <h2 class="comando-titulo">Sinal do Mestre</h2>
         <div class="sinal-container">
-          <span id="sinal-emoji">✌️</span>
+          <span id="sinal-emoji"></span>
           <img
-            src="../img/bandida-logo-transparente.png"
+            src="img/bandida-logo-transparente.png"
             alt="Sinal do mestre"
             id="sinal-imagem"
             style="display: none"
           />
         </div>
-        <p id="comando-texto">Virada de 2</p>
+        <p id="comando-texto"></p>
       </section>
       <section class="metronome">
         <div class="beats-container">
@@ -75,6 +75,26 @@
               <div class="checkbox-container">
                 <input type="checkbox" name="vd3" id="vd3" />
                 <label for="vd3">Virada de 3</label>
+              </div>
+              <div class="checkbox-container">
+                <input type="checkbox" name="ond" id="ond" />
+                <label for="ond">Ondinha - Retomada </label>
+              </div>
+              <hr
+                style="
+                  border: 1px solid var(--bg-secondary-color);
+                  width: 100%;
+                  margin: 10px 0;
+                "
+              />
+
+              <div class="checkbox-container">
+                <input
+                  type="checkbox"
+                  name="ocultar-texto"
+                  id="ocultar-texto"
+                />
+                <label for="ocultar-texto">Apenas sinal - Ocultar texto</label>
               </div>
             </div>
           </div>
