@@ -202,3 +202,14 @@ btnPlay.addEventListener("click", (e) => {
     beats.forEach((b) => b.classList.remove("active"));
   }
 });
+
+window.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("vel").value = 120;
+  document.getElementById("chance").value = 10;
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  checkboxes.forEach((cb) => {
+    cb.checked = false;
+  });
+  document.getElementById("sinal-emoji").innerText = "";
+  document.getElementById("comando-texto").innerText = "";
+});

@@ -366,3 +366,7 @@ input[type="checkbox"] {
   transform: scale(1.05);
   transition: all 0.1s ease;
 }
+
+main{
+  scale: 0.9;
+}
