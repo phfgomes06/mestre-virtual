@@ -1,3 +1,5 @@
+// VARIÁVEIS GLOBAIS
+
 let audioContext;
 let isPlaying = false;
 let bpm = 120;
@@ -9,9 +11,27 @@ let comandoAtual = null;
 let chanceDeComando = 0.1;
 let ultimoComando = { nome: "null" };
 let compassosViradaDe3 = 0;
+let wakeLock = null;
 
 let currentBeat = 0;
 let notesInQueue = [];
+
+// WAKE LOCK:
+
+const requestWakeLock = async () => {
+  try {
+    wakeLock = await navigator.wakeLock.request("screen");
+    console.log("A tela não vai apagar!");
+
+    wakeLock.addEventListener("release", () => {
+      console.log("Wake Lock liberado");
+    });
+  } catch (err) {
+    console.error(`${err.name}, ${err.message}`);
+  }
+};
+
+// COMANDOS
 
 const viradaDe2 = { nome: "Virada de 2", sinal: "✌️" };
 const viradaDe2NotaExtra = {
@@ -22,6 +42,8 @@ const viradaDe2Cortada = { nome: "Virada de 2 cortada", sinal: "✌️✂" };
 const viradaDe3 = { nome: "Virada de 3", sinal: "🤟" };
 const ondinha = { nome: "Ondinha - Retomada", sinal: "🌊" };
 const joinha = { nome: "Retomada", sinal: "👍" };
+
+// ESCOLHA DE COMANDO DO MESTRE
 
 function sortearComando() {
   const ativos = [];
@@ -40,10 +62,14 @@ function sortearComando() {
   return ativos[index];
 }
 
+// BOTOES
+
 const btnPlay = document.getElementById("btn-play");
 const velInput = document.getElementById("vel");
 const beats = document.querySelectorAll(".beat");
 const inputchance = document.getElementById("chance");
+
+// CONFIGURAÇÕES
 
 inputchance.addEventListener("input", (e) => {
   chanceDeComando = e.target.value / 100 || 0.1;
@@ -53,6 +79,8 @@ velInput.addEventListener("input", (e) => {
   bpmDefault = parseInt(e.target.value) || 120;
   bpm = bpmDefault;
 });
+
+// FUNCIONAMENTO DO MESTRE E METRÔNOMO
 
 function nextNote() {
   const secondsPerBeat = 60.0 / bpm;
@@ -174,6 +202,8 @@ function draw() {
   }
 }
 
+// AO CLICAR INICIAR
+
 btnPlay.addEventListener("click", (e) => {
   e.preventDefault();
 
@@ -193,6 +223,7 @@ btnPlay.addEventListener("click", (e) => {
 
     scheduler();
     requestAnimationFrame(draw);
+    requestWakeLock();
   } else {
     estadoMestre = "livre";
     comandoAtual = null;
@@ -205,6 +236,16 @@ btnPlay.addEventListener("click", (e) => {
     beats.forEach((b) => b.classList.remove("active"));
   }
 });
+
+// WAKE LOCK : TELA CONTINUA LIGADA AO VOLTAR PARA O SITE
+
+document.addEventListener("visibilitychange", async () => {
+  if (wakeLock !== null && document.visibilityState === "visible") {
+    await requestWakeLock();
+  }
+});
+
+// RECARREGAR PÁGINA
 
 window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("vel").value = 120;
